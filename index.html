@@ -62,14 +62,21 @@ h1,h2{font-family:"DM Serif Display",serif;font-weight:400}
 .hero p{max-width:560px;margin:20px auto;line-height:1.8;opacity:.8}
 .scroll{margin-top:30px;font-size:12px;opacity:.55}
 
-.photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+.photo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:24px}
 .photo{
- min-height:190px;border-radius:20px;display:flex;align-items:center;justify-content:center;
- border:1px solid rgba(255,255,255,.12);overflow:hidden;position:relative;
+ height:clamp(150px,34vw,260px);border-radius:20px;display:block;
+ border:1px solid rgba(255,255,255,.12);overflow:hidden;position:relative;cursor:pointer;
  background:linear-gradient(135deg,rgba(255,100,150,.18),rgba(180,100,255,.16));
+ transition:transform .25s, box-shadow .25s;
 }
-.photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
-.photo span{position:relative;z-index:1;opacity:.65;font-size:12px;padding:20px}
+.photo:active{transform:scale(.98)}
+.photo:hover{box-shadow:0 12px 30px rgba(255,80,140,.18)}
+.photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform .5s}
+.photo:hover img{transform:scale(1.05)}
+#lightbox{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.94);display:none;align-items:center;justify-content:center;padding:18px}
+#lightbox.show{display:flex}
+#lightbox img{max-width:100%;max-height:88vh;object-fit:contain;border-radius:14px}
+#lightbox button{position:absolute;top:18px;right:18px;border:1px solid #ffffff55;background:#ffffff18;color:white;border-radius:50%;width:42px;height:42px;font-size:24px}
 .note{font-size:16px;line-height:2;color:rgba(255,255,255,.86)}
 .signature{font:italic 30px "DM Serif Display",serif;color:#ffabc5;margin-top:25px}
 
@@ -93,7 +100,7 @@ footer{padding:50px 20px 80px;text-align:center;opacity:.65;font-size:12px}
 }
 @media(max-width:520px){
  .card{padding:32px 18px;border-radius:24px}
- .photo{min-height:150px}
+ .photo{height:clamp(145px,44vw,220px)}
 }
 </style>
 </head>
@@ -123,12 +130,27 @@ footer{padding:50px 20px 80px;text-align:center;opacity:.65;font-size:12px}
  <div class="card">
   <div class="kicker">Our little memories</div>
   <h2 style="font-size:42px;margin:12px 0">Us, in little moments</h2>
-  <p style="opacity:.65">Replace these with your favourite photos together.</p>
+  <p style="opacity:.65">19 little pieces of our story. Tap any photo to see it bigger. ❤️</p>
   <div class="photo-grid">
-   <div class="photo"><span>📸 Add your favourite photo</span></div>
-   <div class="photo"><span>📸 Add your favourite photo</span></div>
-   <div class="photo"><span>📸 Add your favourite photo</span></div>
-   <div class="photo"><span>📸 Add your favourite photo</span></div>
+   <div class="photo" onclick="openPhoto(this)"><img src="photos/2026032419543789.jpg" alt="A beautiful memory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+   <div class="photo" onclick="openPhoto(this)"><img src="photos/IMG-20260319-WA0097.jpg" alt="A beautiful memory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+   <div class="photo" onclick="openPhoto(this)"><img src="photos/IMG-20260324-WA0002.jpg" alt="A beautiful memory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+   <div class="photo" onclick="openPhoto(this)"><img src="photos/IMG-20260408-WA0005.jpg" alt="A beautiful memory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+   <div class="photo" onclick="openPhoto(this)"><img src="photos/IMG_20251230_234656737.jpg" alt="A beautiful memory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+   <div class="photo" onclick="openPhoto(this)"><img src="photos/IMG_20260101_113540385_HDR.jpg" alt="A beautiful memory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+   <div class="photo" onclick="openPhoto(this)"><img src="photos/IMG_20260106_113555724_HDR.jpg" alt="A beautiful memory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+   <div class="photo" onclick="openPhoto(this)"><img src="photos/IMG_20260107_184529666_HDR.jpg" alt="A beautiful memory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+   <div class="photo" onclick="openPhoto(this)"><img src="photos/IMG_20260109_214139_885.jpg" alt="A beautiful memory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+   <div class="photo" onclick="openPhoto(this)"><img src="photos/IMG_20260111_181233_255.jpg" alt="A beautiful memory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+   <div class="photo" onclick="openPhoto(this)"><img src="photos/IMG_20260301_131510034_HDR.jpg" alt="A beautiful memory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+   <div class="photo" onclick="openPhoto(this)"><img src="photos/IMG_20260301_133341679_HDR.jpg" alt="A beautiful memory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+   <div class="photo" onclick="openPhoto(this)"><img src="photos/IMG_20260319_000840881_HDR.jpg" alt="A beautiful memory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+   <div class="photo" onclick="openPhoto(this)"><img src="photos/IMG_20260321_072202492_HDR.jpg" alt="A beautiful memory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+   <div class="photo" onclick="openPhoto(this)"><img src="photos/IMG_20260321_072825917_HDR.jpg" alt="A beautiful memory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+   <div class="photo" onclick="openPhoto(this)"><img src="photos/IMG_20260321_112115417_HDR.jpg" alt="A beautiful memory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+   <div class="photo" onclick="openPhoto(this)"><img src="photos/IMG_20260321_171917260_HDR.jpg" alt="A beautiful memory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+   <div class="photo" onclick="openPhoto(this)"><img src="photos/Snapchat-629329946.jpg" alt="A beautiful memory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+   <div class="photo" onclick="openPhoto(this)"><img src="photos/photo1.jpg" alt="A beautiful memory" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
   </div>
  </div>
 </section>
@@ -166,8 +188,20 @@ footer{padding:50px 20px 80px;text-align:center;opacity:.65;font-size:12px}
 </main>
 
 <footer>Made with love, only for you. ❤️</footer>
+<div id="lightbox" onclick="closePhoto()"><button aria-label="Close" onclick="event.stopPropagation();closePhoto()">×</button><img id="lightbox-img" alt="Our memory" onclick="event.stopPropagation()"></div>
 
 <script>
+function openPhoto(tile){
+ const img=tile.querySelector('img');
+ if(!img || !img.complete || !img.naturalWidth) return;
+ document.getElementById('lightbox-img').src=img.src;
+ document.getElementById('lightbox').classList.add('show');
+}
+function closePhoto(){
+ document.getElementById('lightbox').classList.remove('show');
+ document.getElementById('lightbox-img').src='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closePhoto()});
 function openSurprise(){
  document.getElementById('intro').classList.add('hide');
  for(let i=0;i<18;i++) setTimeout(createHeart,i*100);
