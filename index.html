@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#160914">
+<title>For My Love ❤️</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Poppins:wght@300;400;500;600&display=swap');
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:#10070d;color:#fff;font-family:Poppins,sans-serif;
+  overflow-x:hidden;
+}
+.bg{
+  position:fixed;inset:0;z-index:-3;
+  background:
+    radial-gradient(circle at 20% 15%,rgba(255,90,145,.22),transparent 28%),
+    radial-gradient(circle at 85% 30%,rgba(188,70,255,.18),transparent 30%),
+    radial-gradient(circle at 50% 90%,rgba(255,40,90,.18),transparent 32%),
+    #10070d;
+}
+.stars{position:fixed;inset:0;z-index:-2;opacity:.65;background-image:
+ radial-gradient(2px 2px at 10% 20%,#fff,transparent),
+ radial-gradient(1px 1px at 30% 70%,#fff,transparent),
+ radial-gradient(2px 2px at 70% 15%,#fff,transparent),
+ radial-gradient(1px 1px at 90% 60%,#fff,transparent),
+ radial-gradient(1px 1px at 55% 40%,#fff,transparent);
+ background-size:220px 220px;animation:drift 18s linear infinite}
+@keyframes drift{to{background-position:220px 0}}
+
+#intro{
+ position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;
+ background:#10070d;transition:opacity 1s,visibility 1s;
+}
+#intro.hide{opacity:0;visibility:hidden;pointer-events:none}
+.intro-inner{text-align:center;padding:28px;max-width:520px}
+.mini-heart{font-size:54px;animation:pulse 1.2s infinite}
+@keyframes pulse{50%{transform:scale(1.16)}}
+.intro-inner h1{font:italic 48px "DM Serif Display",serif;margin:15px 0 10px}
+.intro-inner p{opacity:.72}
+.btn{
+ border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08);
+ color:#fff;border-radius:999px;padding:14px 25px;font:500 14px Poppins;
+ cursor:pointer;backdrop-filter:blur(10px);transition:.3s;
+}
+.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.14)}
+
+main{max-width:780px;margin:auto}
+section{min-height:100vh;padding:72px 22px;display:flex;align-items:center;justify-content:center}
+.card{
+ width:100%;padding:38px 25px;border:1px solid rgba(255,255,255,.12);
+ background:rgba(255,255,255,.055);border-radius:30px;backdrop-filter:blur(14px);
+ box-shadow:0 25px 80px rgba(0,0,0,.3);text-align:center;
+}
+.kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;opacity:.62}
+h1,h2{font-family:"DM Serif Display",serif;font-weight:400}
+.hero h1{font-size:clamp(52px,13vw,100px);line-height:.92;margin:18px 0}
+.hero h1 span{display:block;font-style:italic;background:linear-gradient(90deg,#fff,#ff9bbb,#d9a7ff);-webkit-background-clip:text;color:transparent}
+.hero p{max-width:560px;margin:20px auto;line-height:1.8;opacity:.8}
+.scroll{margin-top:30px;font-size:12px;opacity:.55}
+
+.photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+.photo{
+ min-height:190px;border-radius:20px;display:flex;align-items:center;justify-content:center;
+ border:1px solid rgba(255,255,255,.12);overflow:hidden;position:relative;
+ background:linear-gradient(135deg,rgba(255,100,150,.18),rgba(180,100,255,.16));
+}
+.photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.photo span{position:relative;z-index:1;opacity:.65;font-size:12px;padding:20px}
+.note{font-size:16px;line-height:2;color:rgba(255,255,255,.86)}
+.signature{font:italic 30px "DM Serif Display",serif;color:#ffabc5;margin-top:25px}
+
+.reveal{
+ margin-top:25px;padding:25px;border-radius:22px;background:rgba(0,0,0,.18);
+ border:1px solid rgba(255,255,255,.1);cursor:pointer
+}
+.hidden-message{display:none;animation:appear .8s ease}
+.hidden-message.show{display:block}
+@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.big-heart{font-size:70px;margin:15px 0;animation:pulse 1.5s infinite}
+
+footer{padding:50px 20px 80px;text-align:center;opacity:.65;font-size:12px}
+.heart{
+ position:fixed;bottom:-30px;font-size:18px;pointer-events:none;z-index:10;
+ animation:floatUp linear forwards;opacity:.85
+}
+@keyframes floatUp{
+ 0%{transform:translateY(0) translateX(0) rotate(0);opacity:0}
+ 10%{opacity:.9}100%{transform:translateY(-110vh) translateX(var(--x)) rotate(360deg);opacity:0}
+}
+@media(max-width:520px){
+ .card{padding:32px 18px;border-radius:24px}
+ .photo{min-height:150px}
+}
+</style>
+</head>
+<body>
+<div class="bg"></div><div class="stars"></div>
+
+<div id="intro">
+ <div class="intro-inner">
+  <div class="mini-heart">❤️</div>
+  <h1>A little surprise<br>for you...</h1>
+  <p>Someone who loves you, Jawahar, made this little corner of the internet just for you.</p>
+  <button class="btn" onclick="openSurprise()">Open your surprise ✨</button>
+ </div>
+</div>
+
+<main>
+<section class="hero">
+ <div class="card">
+  <div class="kicker">A special day for my special person</div>
+  <h1>Happy Birthday,<span>Aishu ❤️</span></h1>
+  <p>Today isn't just another date on the calendar, Sothumaa. Today is the day the world became a little more beautiful because you were born.</p>
+  <div class="scroll">↓ keep scrolling, beautiful ↓</div>
+ </div>
+</section>
+
+<section>
+ <div class="card">
+  <div class="kicker">Our little memories</div>
+  <h2 style="font-size:42px;margin:12px 0">Us, in little moments</h2>
+  <p style="opacity:.65">Replace these with your favourite photos together.</p>
+  <div class="photo-grid">
+   <div class="photo"><span>📸 Add your favourite photo</span></div>
+   <div class="photo"><span>📸 Add your favourite photo</span></div>
+   <div class="photo"><span>📸 Add your favourite photo</span></div>
+   <div class="photo"><span>📸 Add your favourite photo</span></div>
+  </div>
+ </div>
+</section>
+
+<section>
+ <div class="card">
+  <div class="kicker">A letter for you</div>
+  <h2 style="font-size:46px;margin:12px 0">To my Aishu...</h2>
+  <div class="note">
+   <p>There are so many things I could say today, but somehow “I love you” still feels like the most beautiful one.</p>
+   <p>Thank you for being the person who makes ordinary days feel special, for the smiles, the conversations, the little moments, and all the memories we are still going to create.</p>
+   <p>I hope this new year of your life brings you everything your heart quietly wishes for. And selfishly, I hope I get to be beside you for as many of those moments as possible.</p>
+   <p>Whatever happens, wherever life takes us, I want you to remember one thing:</p>
+   <p><strong>You are deeply loved. Today, tomorrow, and in all the little days in between. ❤️</strong></p>
+  </div>
+  <div class="signature">Forever yours,<br>Jawahar ❤️</div>
+ </div>
+</section>
+
+<section>
+ <div class="card">
+  <div class="kicker">One last surprise</div>
+  <h2 style="font-size:45px;margin:12px 0">Tap this ❤️</h2>
+  <div class="reveal" onclick="revealLove()">
+   <div id="tap">✨ There is something hidden here...</div>
+   <div id="secret" class="hidden-message">
+    <div class="big-heart">❤️</div>
+    <h2 style="font-size:38px">I choose you.</h2>
+    <p class="note">Not just on your birthday. Not just on the good days. I choose you in all the little moments that make a life.</p>
+    <p style="font-size:20px">Happy Birthday, my beautiful Sothumaa. 🥹❤️</p>
+   </div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>Made with love, only for you. ❤️</footer>
+
+<script>
+function openSurprise(){
+ document.getElementById('intro').classList.add('hide');
+ for(let i=0;i<18;i++) setTimeout(createHeart,i*100);
+}
+function revealLove(){
+ document.getElementById('tap').style.display='none';
+ document.getElementById('secret').classList.add('show');
+ for(let i=0;i<35;i++) setTimeout(createHeart,i*70);
+}
+function createHeart(){
+ const h=document.createElement('div');
+ h.className='heart';
+ h.textContent=['❤️','💗','💕','💖','✨'][Math.floor(Math.random()*5)];
+ h.style.left=Math.random()*100+'vw';
+ h.style.setProperty('--x',(Math.random()*180-90)+'px');
+ h.style.animationDuration=(4+Math.random()*4)+'s';
+ document.body.appendChild(h);
+ setTimeout(()=>h.remove(),8500);
+}
+</script>
+</body>
+</html>
