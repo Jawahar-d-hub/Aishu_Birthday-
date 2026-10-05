@@ -2,1316 +2,433 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<meta name="theme-color" content="#09030b">
-<meta name="description" content="A little birthday universe made with love for Aishu ❤️">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#16050d">
 <title>For My Aishu ❤️</title>
 
 <style>
-
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Poppins:wght@300;400;500;600&display=swap');
 
-
-/* =========================================================
-   RESET
-========================================================= */
-
-*{
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
-    margin:0;
-    background:#09030b;
-    color:white;
-    font-family:Poppins,sans-serif;
-    overflow-x:hidden;
+ margin:0;color:#fff;font-family:Poppins,sans-serif;
+ background:#09030b;overflow-x:hidden
 }
-
-
-/* =========================================================
-   ANIMATED BACKGROUND
-========================================================= */
-
-.background{
-    position:fixed;
-    inset:0;
-    z-index:-20;
-    overflow:hidden;
-    background:
-        radial-gradient(circle at 15% 15%,rgba(255,70,130,.20),transparent 30%),
-        radial-gradient(circle at 85% 20%,rgba(140,70,255,.20),transparent 30%),
-        radial-gradient(circle at 50% 90%,rgba(255,40,100,.15),transparent 35%),
-        #09030b;
-    animation:
-        backgroundMove 14s ease-in-out infinite alternate;
+body:before{
+ content:"";position:fixed;inset:0;z-index:-2;
+ background:
+ radial-gradient(circle at 15% 15%,#7d1648 0,transparent 30%),
+ radial-gradient(circle at 85% 20%,#40206e 0,transparent 30%),
+ radial-gradient(circle at 50% 90%,#54102f 0,transparent 35%),
+ #09030b
 }
-
-@keyframes backgroundMove{
-    0%{
-        transform:scale(1);
-        filter:hue-rotate(0deg);
-    }
-
-    100%{
-        transform:scale(1.08);
-        filter:hue-rotate(12deg);
-    }
+body:after{
+ content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+ opacity:.5;
+ background-image:
+ radial-gradient(2px 2px at 10% 20%,#fff,transparent),
+ radial-gradient(1px 1px at 30% 70%,#fff,transparent),
+ radial-gradient(2px 2px at 70% 15%,#fff,transparent),
+ radial-gradient(1px 1px at 90% 60%,#fff,transparent),
+ radial-gradient(1px 1px at 55% 40%,#fff,transparent);
+ background-size:240px 240px;
+ animation:stars 18s linear infinite
 }
+@keyframes stars{to{background-position:240px 0}}
 
-
-/* glowing blobs */
-
-.blob{
-    position:fixed;
-    border-radius:50%;
-    filter:blur(70px);
-    pointer-events:none;
-    z-index:-15;
-    opacity:.25;
-}
-
-.blob.one{
-    width:240px;
-    height:240px;
-    background:#ff4f91;
-    top:10%;
-    left:-100px;
-    animation:blobOne 12s ease-in-out infinite alternate;
-}
-
-.blob.two{
-    width:300px;
-    height:300px;
-    background:#8b5cf6;
-    right:-140px;
-    top:40%;
-    animation:blobTwo 15s ease-in-out infinite alternate;
-}
-
-.blob.three{
-    width:220px;
-    height:220px;
-    background:#ff2f78;
-    bottom:-100px;
-    left:35%;
-    animation:blobThree 11s ease-in-out infinite alternate;
-}
-
-@keyframes blobOne{
-    to{
-        transform:translate(120px,100px) scale(1.3);
-    }
-}
-
-@keyframes blobTwo{
-    to{
-        transform:translate(-100px,-80px) scale(1.2);
-    }
-}
-
-@keyframes blobThree{
-    to{
-        transform:translate(80px,-120px) scale(1.3);
-    }
-}
-
-
-/* =========================================================
-   STARS
-========================================================= */
-
-.stars{
-    position:fixed;
-    inset:0;
-    z-index:-10;
-    opacity:.65;
-    pointer-events:none;
-
-    background-image:
-        radial-gradient(2px 2px at 10% 20%,#fff,transparent),
-        radial-gradient(1px 1px at 30% 70%,#fff,transparent),
-        radial-gradient(2px 2px at 70% 15%,#fff,transparent),
-        radial-gradient(1px 1px at 90% 60%,#fff,transparent),
-        radial-gradient(1px 1px at 55% 40%,#fff,transparent),
-        radial-gradient(1px 1px at 20% 90%,#fff,transparent);
-
-    background-size:240px 240px;
-
-    animation:starsMove 22s linear infinite;
-}
-
-@keyframes starsMove{
-    to{
-        background-position:240px 0;
-    }
-}
-
-
-/* =========================================================
-   TOP PROGRESS
-========================================================= */
-
-.progress{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:3px;
-    background:rgba(255,255,255,.05);
-    z-index:999;
-}
-
-.progress-bar{
-    width:0%;
-    height:100%;
-    background:linear-gradient(
-        90deg,
-        #ff6a9d,
-        #ffb3d1,
-        #c7a4ff,
-        #ff6a9d
-    );
-    box-shadow:
-        0 0 10px #ff6a9d,
-        0 0 20px rgba(255,100,160,.5);
-
-    transition:width .15s linear;
-}
-
-
-/* =========================================================
-   INTRO SCREEN
-========================================================= */
-
-#intro{
-    position:fixed;
-    inset:0;
-    z-index:500;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-
-    background:
-        radial-gradient(circle at center,rgba(255,70,130,.12),transparent 45%),
-        #09030b;
-
-    transition:
-        opacity 1.3s ease,
-        visibility 1.3s ease;
-}
-
-#intro.hide{
-    opacity:0;
-    visibility:hidden;
-    pointer-events:none;
-}
-
-.intro-inner{
-    width:min(90%,560px);
-    padding:30px;
-
-    animation:introAppear 1.5s cubic-bezier(.2,.8,.2,1);
-}
-
-@keyframes introAppear{
-    from{
-        opacity:0;
-        transform:scale(.75) translateY(40px);
-    }
-
-    to{
-        opacity:1;
-        transform:none;
-    }
-}
-
-.intro-heart{
-    font-size:64px;
-    display:inline-block;
-    animation:
-        introHeart 1.3s ease-in-out infinite,
-        introFloat 3s ease-in-out infinite;
-}
-
-@keyframes introHeart{
-    50%{
-        transform:scale(1.25);
-    }
-}
-
-@keyframes introFloat{
-    50%{
-        margin-top:-10px;
-    }
-}
-
-.intro-inner h1{
-    font-family:"DM Serif Display",serif;
-    font-size:clamp(45px,11vw,70px);
-    font-weight:400;
-    font-style:italic;
-    line-height:1;
-    margin:25px 0 15px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #fff,
-            #ff9fc0,
-            #d8b4ff,
-            #fff
-        );
-
-    background-size:300% auto;
-
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-
-    animation:introGradient 5s linear infinite;
-}
-
-@keyframes introGradient{
-    to{
-        background-position:300% center;
-    }
-}
-
-.intro-inner p{
-    opacity:.7;
-    line-height:1.9;
-    font-size:14px;
-    margin-bottom:30px;
-}
-
-.open-button{
-    border:1px solid rgba(255,255,255,.25);
-    background:rgba(255,255,255,.07);
-    color:#fff;
-
-    border-radius:999px;
-
-    padding:16px 30px;
-
-    font-family:Poppins,sans-serif;
-    font-size:14px;
-    font-weight:500;
-
-    cursor:pointer;
-
-    backdrop-filter:blur(12px);
-
-    box-shadow:
-        0 0 25px rgba(255,80,150,.15);
-
-    transition:.4s;
-}
-
-.open-button:hover{
-    transform:
-        translateY(-4px)
-        scale(1.04);
-
-    background:rgba(255,255,255,.13);
-
-    box-shadow:
-        0 12px 45px rgba(255,80,150,.3);
-}
-
-
-/* =========================================================
-   MAIN
-========================================================= */
-
-main{
-    width:min(900px,100%);
-    margin:auto;
-}
-
-section{
-    min-height:100vh;
-
-    padding:
-        90px 18px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-
-/* =========================================================
-   GLASS CARD
-========================================================= */
-
+main{max-width:900px;margin:auto}
+section{padding:70px 15px}
 .card{
-    width:100%;
-
-    padding:
-        45px 24px;
-
-    border-radius:32px;
-
-    border:
-        1px solid rgba(255,255,255,.12);
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.065),
-            rgba(255,255,255,.025)
-        );
-
-    backdrop-filter:blur(18px);
-
-    box-shadow:
-        0 30px 100px rgba(0,0,0,.45);
-
-    position:relative;
-
-    overflow:hidden;
-
-    text-align:center;
+ padding:35px 18px;border-radius:30px;text-align:center;
+ background:#ffffff09;border:1px solid #ffffff18;
+ backdrop-filter:blur(14px);
+ box-shadow:0 25px 70px #0008
 }
-
-.card::before{
-    content:"";
-
-    position:absolute;
-
-    width:220px;
-    height:220px;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(255,100,160,.16),
-            transparent 70%
-        );
-
-    top:-120px;
-    right:-100px;
-
-    pointer-events:none;
-}
-
-.card::after{
-    content:"";
-
-    position:absolute;
-
-    width:160px;
-    height:160px;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(170,110,255,.10),
-            transparent 70%
-        );
-
-    bottom:-90px;
-    left:-80px;
-
-    pointer-events:none;
-}
-
-
-/* =========================================================
-   TYPOGRAPHY
-========================================================= */
-
 .kicker{
-    font-size:11px;
-    letter-spacing:4px;
-    text-transform:uppercase;
-    opacity:.55;
+ font-size:10px;letter-spacing:4px;text-transform:uppercase;
+ opacity:.55
 }
-
-h1,
-h2,
-h3{
-    font-family:"DM Serif Display",serif;
-    font-weight:400;
-}
-
-
-/* =========================================================
-   HERO
-========================================================= */
+h1,h2,h3{font-family:"DM Serif Display",serif;font-weight:400}
 
 .hero{
-    min-height:100vh;
+ min-height:100vh;display:flex;align-items:center;
+ justify-content:center
 }
-
 .hero h1{
-    font-size:
-        clamp(
-            55px,
-            14vw,
-            105px
-        );
-
-    line-height:.88;
-
-    margin:
-        20px 0;
+ font-size:clamp(55px,15vw,100px);
+ line-height:.88;margin:20px 0
 }
-
 .hero h1 span{
-    display:block;
+ display:block;font-style:italic;
+ background:linear-gradient(90deg,#fff,#ff91b9,#d5b0ff,#fff);
+ background-size:300%;
+ -webkit-background-clip:text;background-clip:text;color:transparent;
+ animation:gradient 5s linear infinite
+}
+@keyframes gradient{to{background-position:300%}}
+.hero p{
+ max-width:600px;margin:auto;line-height:1.9;
+ font-size:14px;opacity:.72
+}
+.scroll{margin-top:35px;opacity:.45;font-size:11px}
 
-    font-style:italic;
-
-    background:
-        linear-gradient(
-            90deg,
-            #fff,
-            #ff9cbd,
-            #d4adff,
-            #fff
-        );
-
-    background-size:300% auto;
-
-    -webkit-background-clip:text;
-    background-clip:text;
-
-    color:transparent;
-
-    animation:
-        heroGradient 5s linear infinite,
-        heroGlow 3s ease-in-out infinite alternate;
+.featured h2,.gallery h2,.letter h2,.final h2{
+ font-size:clamp(42px,10vw,65px);margin:10px 0 15px
+}
+.sub{
+ max-width:600px;margin:0 auto 30px;
+ font-size:13px;line-height:1.9;opacity:.6
 }
 
-@keyframes heroGradient{
-    to{
-        background-position:300% center;
-    }
+.feature{
+ padding:5px;border-radius:28px;
+ background:linear-gradient(135deg,#ff5790,#a66cff,#ffb5d0,#ff5790);
+ background-size:300%;
+ animation:gradient 6s linear infinite,up 5s ease-in-out infinite;
+ box-shadow:0 20px 70px #ff3d8125
 }
+@keyframes up{50%{transform:translateY(-7px)}}
 
-@keyframes heroGlow{
-    from{
-        filter:
-            drop-shadow(
-                0 0 3px
-                rgba(255,120,170,.2)
-            );
-    }
-
-    to{
-        filter:
-            drop-shadow(
-                0 0 18px
-                rgba(255,120,170,.5)
-            );
-    }
+.feature img{
+ display:block;width:100%;aspect-ratio:4/5;
+ object-fit:cover;border-radius:23px;
+ animation:zoom 8s ease-in-out infinite alternate;
+ cursor:pointer
 }
+@keyframes zoom{to{transform:scale(1.06)}}
 
-.hero-text{
-    max-width:620px;
-    margin:25px auto;
-
-    line-height:1.9;
-
-    opacity:.75;
-
-    font-size:15px;
+.caption{
+ margin:22px 0 5px;font:italic 28px "DM Serif Display",serif;
+ color:#ffabc7
 }
+.small{font-size:11px;opacity:.45}
 
-.scroll-hint{
-    margin-top:40px;
-
-    font-size:11px;
-
-    opacity:.45;
-
-    animation:
-        scrollHint 2s ease-in-out infinite;
+.grid{
+ display:grid;grid-template-columns:1fr 1fr;gap:10px
 }
-
-@keyframes scrollHint{
-    50%{
-        transform:translateY(8px);
-        opacity:.75;
-    }
-}
-
-
-/* =========================================================
-   FEATURED PHOTO
-========================================================= */
-
-.featured-section{
-    min-height:auto;
-    padding-top:40px;
-}
-
-.featured-title{
-    font-family:"DM Serif Display",serif;
-
-    font-size:
-        clamp(
-            38px,
-            10vw,
-            60px
-        );
-
-    margin:
-        12px 0 8px;
-}
-
-.featured-subtitle{
-    opacity:.58;
-    font-size:13px;
-    line-height:1.8;
-
-    max-width:500px;
-    margin:0 auto 30px;
-}
-
-
-/* featured photo frame */
-
-.featured-frame{
-    position:relative;
-
-    width:100%;
-
-    border-radius:28px;
-
-    padding:6px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,120,170,.75),
-            rgba(180,110,255,.65),
-            rgba(255,180,210,.55),
-            rgba(255,100,160,.75)
-        );
-
-    background-size:300% 300%;
-
-    animation:
-        frameGradient 8s ease infinite;
-
-    box-shadow:
-        0 25px 80px rgba(0,0,0,.55),
-        0 0 50px rgba(255,80,150,.16);
-
-    transform:
-        perspective(1000px)
-        rotateX(2deg);
-
-    transition:
-        transform .7s ease;
-}
-
-@keyframes frameGradient{
-    0%{
-        background-position:0% 50%;
-    }
-
-    50%{
-        background-position:100% 50%;
-    }
-
-    100%{
-        background-position:0% 50%;
-    }
-}
-
-.featured-frame:hover{
-    transform:
-        perspective(1000px)
-        rotateX(0deg)
-        scale(1.015);
-}
-
-.featured-photo{
-    position:relative;
-
-    overflow:hidden;
-
-    border-radius:23px;
-
-    background:#09030b;
-
-    aspect-ratio:
-        4 / 5;
-}
-
-.featured-photo img{
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    display:block;
-
-    transform:
-        scale(1.02);
-
-    transition:
-        transform 1.5s
-        cubic-bezier(.2,.8,.2,1);
-}
-
-.featured-frame:hover
-.featured-photo img{
-    transform:scale(1.09);
-}
-
-
-/* moving shine */
-
-.featured-photo::after{
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-        linear-gradient(
-            120deg,
-            transparent 25%,
-            rgba(255,255,255,.22),
-            transparent 65%
-        );
-
-    transform:
-        translateX(-130%);
-
-    animation:
-        featuredShine 5s
-        ease-in-out
-        infinite;
-
-    pointer-events:none;
-}
-
-@keyframes featuredShine{
-    0%,
-    55%{
-        transform:translateX(-130%);
-    }
-
-    75%,
-    100%{
-        transform:translateX(130%);
-    }
-}
-
-
-/* featured caption */
-
-.featured-caption{
-    margin-top:22px;
-
-    font-family:
-        "DM Serif Display",
-        serif;
-
-    font-size:27px;
-
-    font-style:italic;
-
-    color:#ffb1ca;
-
-    animation:
-        captionGlow
-        3s ease-in-out
-        infinite alternate;
-}
-
-@keyframes captionGlow{
-    from{
-        text-shadow:
-            0 0 4px
-            rgba(255,120,170,.1);
-    }
-
-    to{
-        text-shadow:
-            0 0 18px
-            rgba(255,120,170,.55);
-    }
-}
-
-.featured-small{
-    margin-top:7px;
-
-    opacity:.48;
-
-    font-size:11px;
-
-    letter-spacing:1px;
-}
-
-
-/* =========================================================
-   MEMORY GALLERY
-========================================================= */
-
-.gallery-section{
-    padding-top:60px;
-}
-
-.gallery-title{
-    font-family:
-        "DM Serif Display",
-        serif;
-
-    font-size:
-        clamp(
-            42px,
-            10vw,
-            62px
-        );
-
-    margin:
-        12px 0;
-}
-
-.gallery-description{
-    max-width:550px;
-
-    margin:
-        0 auto 35px;
-
-    opacity:.58;
-
-    font-size:13px;
-
-    line-height:1.9;
-}
-
-
-/* gallery grid */
-
-.photo-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(
-            2,
-            minmax(0,1fr)
-        );
-
-    gap:12px;
-}
-
-
-/* photo card */
-
 .photo{
-    position:relative;
-
-    height:
-        clamp(
-            170px,
-            44vw,
-            280px
-        );
-
-    overflow:hidden;
-
-    border-radius:20px;
-
-    cursor:pointer;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,100,150,.16),
-            rgba(160,100,255,.15)
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,.12);
-
-    opacity:0;
-
-    transform:
-        translateY(70px)
-        scale(.92);
-
-    transition:
-        opacity 1s ease,
-        transform 1s
-        cubic-bezier(.2,.8,.2,1),
-        box-shadow .4s ease;
+ height:43vw;max-height:280px;min-height:150px;
+ overflow:hidden;border-radius:18px;
+ border:1px solid #ffffff15;
+ opacity:0;transform:translateY(30px) scale(.95);
+ transition:.8s cubic-bezier(.2,.8,.2,1);
+ cursor:pointer
 }
-
-
-/* alternating entrance */
-
-.photo:nth-child(odd){
-    transform:
-        translateX(-80px)
-        rotate(-3deg)
-        scale(.92);
-}
-
-.photo:nth-child(even){
-    transform:
-        translateX(80px)
-        rotate(3deg)
-        scale(.92);
-}
-
-.photo.visible{
-    opacity:1;
-
-    transform:
-        translateX(0)
-        translateY(0)
-        rotate(0)
-        scale(1);
-}
-
-.photo:hover{
-    transform:
-        translateY(-8px)
-        scale(1.035);
-
-    box-shadow:
-        0 20px 45px
-        rgba(255,80,150,.25);
-}
-
+.photo.show{opacity:1;transform:none}
 .photo img{
-    position:absolute;
-
-    inset:0;
-
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    transition:
-        transform .9s
-        cubic-bezier(.2,.8,.2,1);
+ width:100%;height:100%;object-fit:cover;
+ transition:.7s
 }
-
-.photo:hover img{
-    transform:scale(1.10);
-}
-
-
-/* shine on photos */
-
-.photo::after{
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-        linear-gradient(
-            125deg,
-            transparent 35%,
-            rgba(255,255,255,.12),
-            transparent 65%
-        );
-
-    transform:
-        translateX(-130%);
-
-    transition:
-        transform .8s;
-
-    pointer-events:none;
-}
-
-.photo:hover::after{
-    transform:
-        translateX(130%);
-}
-
-
-/* =========================================================
-   LIGHTBOX
-========================================================= */
-
-#lightbox{
-    position:fixed;
-
-    inset:0;
-
-    z-index:800;
-
-    display:none;
-
-    align-items:center;
-    justify-content:center;
-
-    padding:15px;
-
-    background:
-        rgba(4,1,7,.96);
-
-    opacity:0;
-}
-
-#lightbox.show{
-    display:flex;
-
-    animation:
-        lightboxAppear
-        .35s ease forwards;
-}
-
-@keyframes lightboxAppear{
-    to{
-        opacity:1;
-    }
-}
-
-.lightbox-image{
-    max-width:96%;
-    max-height:88vh;
-
-    object-fit:contain;
-
-    border-radius:18px;
-
-    box-shadow:
-        0 25px 90px
-        rgba(0,0,0,.75);
-
-    animation:
-        imageZoom
-        .5s
-        cubic-bezier(.2,.8,.2,1);
-}
-
-@keyframes imageZoom{
-    from{
-        opacity:0;
-        transform:scale(.78);
-    }
-
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
-}
-
-.close-lightbox{
-    position:absolute;
-
-    top:18px;
-    right:18px;
-
-    width:46px;
-    height:46px;
-
-    border-radius:50%;
-
-    border:
-        1px solid
-        rgba(255,255,255,.25);
-
-    background:
-        rgba(255,255,255,.08);
-
-    color:white;
-
-    font-size:25px;
-
-    cursor:pointer;
-
-    backdrop-filter:blur(10px);
-}
-
-
-/* =========================================================
-   LOVE LETTER
-========================================================= */
-
-.letter-section{
-    min-height:90vh;
-}
-
-.letter-title{
-    font-family:
-        "DM Serif Display",
-        serif;
-
-    font-size:
-        clamp(
-            45px,
-            11vw,
-            65px
-        );
-
-    margin:
-        12px 0 30px;
-}
-
-.letter{
-    text-align:left;
-
-    max-width:650px;
-
-    margin:auto;
-}
+.photo:hover img{transform:scale(1.1)}
 
 .letter p{
-    font-size:15px;
-
-    line-height:2;
-
-    color:
-        rgba(255,255,255,.82);
-
-    margin:
-        0 0 22px;
-
-    opacity:0;
-
-    transform:
-        translateY(20px);
-
-    transition:
-        opacity .8s ease,
-        transform .8s ease;
+ max-width:650px;margin:0 auto 20px;text-align:left;
+ line-height:2;font-size:14px;opacity:.82
 }
-
-.letter.visible p{
-    opacity:1;
-
-    transform:none;
-}
-
-.letter.visible p:nth-child(2){
-    transition-delay:.15s;
-}
-
-.letter.visible p:nth-child(3){
-    transition-delay:.30s;
-}
-
-.letter.visible p:nth-child(4){
-    transition-delay:.45s;
-}
-
-.letter.visible p:nth-child(5){
-    transition-delay:.60s;
-}
-
 .signature{
-    text-align:right;
-
-    font-family:
-        "DM Serif Display",
-        serif;
-
-    font-size:29px;
-
-    font-style:italic;
-
-    color:#ffabc6;
-
-    margin-top:30px;
-
-    animation:
-        signatureGlow
-        3s ease-in-out
-        infinite alternate;
+ text-align:right;font:italic 30px "DM Serif Display",serif;
+ color:#ffabc7
 }
 
-@keyframes signatureGlow{
-    from{
-        text-shadow:
-            0 0 3px
-            rgba(255,130,170,.1);
-    }
-
-    to{
-        text-shadow:
-            0 0 18px
-            rgba(255,130,170,.55);
-    }
+.reveal{
+ margin-top:25px;padding:25px 15px;border-radius:22px;
+ border:1px solid #ffffff18;background:#ffffff08;
+ cursor:pointer
 }
-
-
-/* =========================================================
-   FINAL SURPRISE
-========================================================= */
-
-.final-section{
-    min-height:100vh;
+.hint{font-size:13px;opacity:.65}
+.secret{display:none}
+.secret.show{display:block;animation:appear .8s ease}
+@keyframes appear{
+ from{opacity:0;transform:scale(.8)}
+ to{opacity:1;transform:none}
 }
+.heart{font-size:70px}
+.secret h3{font-size:50px;margin:8px}
+.secret p{line-height:1.8;opacity:.7}
 
-.final-title{
-    font-family:
-        "DM Serif Display",
-        serif;
-
-    font-size:
-        clamp(
-            43px,
-            11vw,
-            68px
-        );
-
-    margin:
-        12px 0;
+#lightbox{
+ position:fixed;inset:0;z-index:50;display:none;
+ align-items:center;justify-content:center;
+ padding:15px;background:#050107f5
 }
-
-.reveal-box{
-    margin-top:35px;
-
-    padding:30px 20px;
-
-    border-radius:25px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.12);
-
-    background:
-        rgba(255,255,255,.035);
-
-    cursor:pointer;
-
-    transition:.5s;
+#lightbox.show{display:flex}
+#lightbox img{
+ max-width:96%;max-height:88vh;
+ object-fit:contain;border-radius:18px
 }
-
-.reveal-box:hover{
-    background:
-        rgba(255,255,255,.08);
-
-    transform:
-        scale(1.02);
+.close{
+ position:absolute;right:15px;top:15px;
+ width:45px;height:45px;border-radius:50%;
+ border:1px solid #ffffff33;background:#ffffff12;
+ color:#fff;font-size:25px
 }
-
-.reveal-hint{
-    font-size:13px;
-
-    opacity:.6;
-
-    animation:
-        pulseHint
-        2s
-        infinite;
-}
-
-@keyframes pulseHint{
-    50%{
-        opacity:1;
-    }
-}
-
-.secret{
-    display:none;
-
-    animation:
-        secretReveal
-        1.2s
-        cubic-bezier(.2,.8,.2,1);
-}
-
-.secret.show{
-    display:block;
-}
-
-@keyframes secretReveal{
-    from{
-        opacity:0;
-        transform:
-            translateY(35px)
-            scale(.85);
-    }
-
-    to{
-        opacity:1;
-        transform:none;
-    }
-}
-
-.big-heart{
-    font-size:80px;
-
-    display:inline-block;
-
-    animation:
-        bigHeart
-        1.4s
-        infinite;
-}
-
-@keyframes bigHeart{
-    50%{
-        transform:
-            scale(1.22);
-    }
-}
-
-.secret h2{
-    font-size:
-        clamp(
-            40px,
-            10vw,
-            60px
-        );
-
-    margin:
-        10px 0;
-}
-
-.secret p{
-    opacity:.75;
-
-    line-height:1.9;
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
 
 footer{
-    text-align:center;
+ padding:20px 15px 70px;text-align:center;
+ opacity:.4;font-size:11px
+}
 
-    padding:
-        30px 20px
-        80px;
+@media(max-width:600px){
+ section{padding:60px 12px}
+ .card{padding:32px 15px}
+}
+</style>
+</head>
 
-    opacity:.5;
+<body>
 
-    font-size:11px;
+<main>
 
-    letter-spacing:.5px;
+<section class="hero">
+<div class="card">
+<div class="kicker">A little universe made for you</div>
+
+<h1>
+Happy Birthday
+<span>Aishu ❤️</span>
+</h1>
+
+<p>
+Today isn't just another day. It's the day someone incredibly
+special came into this world — and somehow became my favourite
+person, my happiest place, and my forever Sothumaa. ❤️
+</p>
+
+<div class="scroll">↓ scroll slowly ↓</div>
+</div>
+</section>
+
+
+<section class="featured">
+<div class="card">
+
+<div class="kicker">My favourite memory</div>
+
+<h2>You & Me</h2>
+
+<p class="sub">
+Out of all the moments we've shared, this one will always have
+a special little place in my heart. ❤️
+</p>
+
+<div class="feature">
+<img
+src="photos/IMG_20260321_072202492_HDR.jpg"
+alt="Aishu and Jawahar on the hill"
+onclick="openPhoto(this.src)">
+</div>
+
+<div class="caption">
+“My favourite view is still you.”
+</div>
+
+<div class="small">
+A moment I wish I could pause forever ✨
+</div>
+
+</div>
+</section>
+<section class="gallery">
+<div class="card">
+
+<div class="kicker">Our little memories</div>
+
+<h2>Us, in little moments</h2>
+
+<p class="sub">
+Every picture holds a tiny piece of our story. Some are silly,
+some beautiful, and some simply remind me how lucky I am to have you.
+</p>
+
+<div class="grid">
+
+<div class="photo"><img src="photos/2026032419543789.jpg"></div>
+<div class="photo"><img src="photos/IMG-20260319-WA0097.jpg"></div>
+<div class="photo"><img src="photos/IMG-20260324-WA0002.jpg"></div>
+<div class="photo"><img src="photos/IMG-20260408-WA0005.jpg"></div>
+<div class="photo"><img src="photos/IMG_20251230_234656737.jpg"></div>
+<div class="photo"><img src="photos/IMG_20260101_113540385_HDR.jpg"></div>
+<div class="photo"><img src="photos/IMG_20260106_113555724_HDR.jpg"></div>
+<div class="photo"><img src="photos/IMG_20260107_184529666_HDR.jpg"></div>
+<div class="photo"><img src="photos/IMG_20260109_214139_885.jpg"></div>
+<div class="photo"><img src="photos/IMG_20260111_181233_255.jpg"></div>
+<div class="photo"><img src="photos/IMG_20260301_131510034_HDR.jpg"></div>
+<div class="photo"><img src="photos/IMG_20260301_133341679_HDR.jpg"></div>
+<div class="photo"><img src="photos/IMG_20260319_000840881_HDR.jpg"></div>
+<div class="photo"><img src="photos/IMG_20260321_072825917_HDR.jpg"></div>
+<div class="photo"><img src="photos/IMG_20260321_112115417_HDR.jpg"></div>
+<div class="photo"><img src="photos/IMG_20260321_171917260_HDR.jpg"></div>
+<div class="photo"><img src="photos/Snapchat-629329946.jpg"></div>
+
+</div>
+</div>
+</section>
+<section class="letter">
+<div class="card">
+
+<div class="kicker">From my heart</div>
+
+<h2>Dear Aishu,</h2>
+
+<p>
+I don't think I'll ever find the perfect words to explain what
+you mean to me. But if I had to try, I would say this:
+you made ordinary days feel special.
+</p>
+
+<p>
+You became the person I want to tell everything to — the good
+things, the silly things, the difficult things, and all those
+tiny moments that nobody else would understand.
+</p>
+
+<p>
+I love the way we create memories together. I love our laughter,
+our conversations, our random moments, and even the little things
+we probably don't realise we'll remember forever.
+</p>
+
+<p>
+On your birthday, I just want you to know that I am incredibly
+grateful that our paths crossed. I hope this is only the beginning
+of many, many more memories together.
+</p>
+
+<p>
+Happy Birthday, Sothumaa. ❤️ Whatever comes next,
+I want to keep choosing you.
+</p>
+
+<div class="signature">— Jawahar ❤️</div>
+
+</div>
+</section>
+
+
+<section class="final">
+<div class="card">
+
+<div class="kicker">One last thing</div>
+
+<h2>Before you leave...</h2>
+
+<p style="opacity:.6">
+I kept one little message hidden here just for you.
+</p>
+
+<div class="reveal" onclick="revealSecret()">
+
+<div class="hint" id="hint">
+Tap here for your final surprise ❤️
+</div>
+
+<div class="secret" id="secret">
+
+<div class="heart">❤️</div>
+
+<h3>I choose you.</h3>
+
+<p>
+Today.<br>
+Tomorrow.<br>
+And in all the little moments in between.
+</p>
+
+<p>
+Happy Birthday, my Aishu. 🥹❤️
+</p>
+
+</div>
+</div>
+
+</div>
+</section>
+
+</main>
+
+
+<div id="lightbox" onclick="closePhoto(event)">
+<button class="close" onclick="closePhoto()">×</button>
+<img id="lightboxImage">
+</div>
+
+
+<footer>
+Made with love for Aishu ❤️<br>
+From Jawahar
+</footer>
+
+
+<script>
+
+const photos=document.querySelectorAll(".photo");
+
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(e=>{
+if(e.isIntersecting){
+e.target.classList.add("show");
+observer.unobserve(e.target);
+}
+});
+},{threshold:.1});
+
+photos.forEach(p=>observer.observe(p));
+
+
+document.querySelectorAll(".photo img").forEach(img=>{
+img.onclick=()=>openPhoto(img.src);
+});
+
+
+function openPhoto(src){
+document.getElementById("lightboxImage").src=src;
+document.getElementById("lightbox").classList.add("show");
+document.body.style.overflow="hidden";
 }
 
 
-/* =========================================================
-   FLOATING HEARTS
-========================================================= */
+function closePhoto(e){
+if(e && e.target && e.target.id==="lightboxImage")return;
+document.getElementById("lightbox").classList.remove("show");
+document.body.style.overflow="";
+}
 
-.floating-heart{
-    position:fixed;
 
-    bottom:-40px;
+function revealSecret(){
+document.getElementById("hint").style.display="none";
+document.getElementById("secret").classList.add("show");
+}
 
-   
+
+document.addEventListener("keydown",e=>{
+if(e.key==="Escape")closePhoto();
+});
+
+
+setInterval(()=>{
+const h=document.createElement("div");
+h.innerHTML=Math.random()>.5?"❤️":"♡";
+h.style.position="fixed";
+h.style.left=Math.random()*100+"vw";
+h.style.bottom="-30px";
+h.style.fontSize=12+Math.random()*16+"px";
+h.style.zIndex="-1";
+h.style.opacity=".6";
+h.style.transition="transform 9s linear,opacity 9s linear";
+document.body.appendChild(h);
+
+requestAnimationFrame(()=>{
+h.style.transform=
+"translateY(-110vh) translateX("+
+(Math.random()*120-60)+"px)";
+h.style.opacity="0";
+});
+
+setTimeout(()=>h.remove(),9500);
+},1800);
+
+</script>
+
+</body>
+</html>
